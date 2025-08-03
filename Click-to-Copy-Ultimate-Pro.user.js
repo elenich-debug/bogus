@@ -3,7 +3,9 @@
 // @namespace    http://tampermonkey.net/
 // @version      24.0
 // @description  Добавлена фильтрация строк, начинающихся с символа *.
-// @author       You & Bogus
+// @author       Bogus
+// @downloadURL  https://raw.githubusercontent.com/bogus/bogus/main/Click-to-Copy-Ultimate-Pro.user.js
+// @updateURL    https://raw.githubusercontent.com/bogus/bogus/main/Click-to-Copy-Ultimate-Pro.user.js
 // @match        *://*/*
 // @grant        GM_setClipboard
 // @grant        GM_addStyle
