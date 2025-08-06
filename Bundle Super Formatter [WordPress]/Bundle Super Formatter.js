@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Bundle Super Formatter [WordPress]
-// @namespace    https://github.com/elenich-debug/
+// @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  Automates post creation in WordPress Classic Editor: templates content, manages categories, tags, custom fields, and populates a shortcode with IDs.
-// @author       elenich-debug
+// @author       Bogus
 // @license      MIT
 // @match        */wp-admin/post.php*
 // @match        */wp-admin/post-new.php*
