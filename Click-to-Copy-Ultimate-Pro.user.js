@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         Click-to-Copy Ultimate Pro
 // @namespace    http://tampermonkey.net/
-// @version      24.0
-// @description  Добавлена фильтрация строк, начинающихся с символа *.
+// @version      24.1
+// @description  Быстрое копирование описяния продукта на 3D Маркетплейсах.
 // @author       Bogus
-// @downloadURL  https://raw.githubusercontent.com/elenich-debug/bogus/main/Click-to-Copy-Ultimate-Pro.user.js
-// @updateURL    https://raw.githubusercontent.com/elenich-debug/bogus/main/Click-to-Copy-Ultimate-Pro.user.js
 // @match        *://*/*
 // @grant        GM_setClipboard
 // @grant        GM_addStyle
+// @downloadURL https://update.greasyfork.org/scripts/544509/Click-to-Copy%20Ultimate%20Pro.user.js
+// @updateURL https://update.greasyfork.org/scripts/544509/Click-to-Copy%20Ultimate%20Pro.meta.js
 // ==/UserScript==
 
 (function() {
