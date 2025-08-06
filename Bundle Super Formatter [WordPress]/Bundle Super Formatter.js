@@ -1,12 +1,15 @@
 // ==UserScript==
 // @name         Bundle Super Formatter [WordPress]
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/elenich-debug/
 // @version      8.0
-// @description  Full automation for post creation: pastes text, updates IDs, manages categories and tags, clears custom fields, and cleans up the final shortcode.
-// @author       Bogus
+// @description  Automates post creation in WordPress Classic Editor: templates content, manages categories, tags, custom fields, and populates a shortcode with IDs.
+// @author       elenich-debug
+// @license      MIT
 // @match        */wp-admin/post.php*
 // @match        */wp-admin/post-new.php*
 // @grant        none
+// @updateURL    https://raw.githubusercontent.com/elenich-debug/bogus/main/Bundle%20Super%20Formatter%20%5BWordPress%5D/Bundle%20Super%20Formatter.js
+// @downloadURL  https://raw.githubusercontent.com/elenich-debug/bogus/main/Bundle%20Super%20Formatter%20%5BWordPress%5D/Bundle%20Super%20Formatter.js
 // ==/UserScript==
 
 (function() {
