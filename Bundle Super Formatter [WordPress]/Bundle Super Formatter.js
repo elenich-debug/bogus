@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bundle Super Formatter [WordPress]
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      8.0
 // @description  Automates post creation in WordPress Classic Editor: templates content, manages categories, tags, custom fields, and populates a shortcode with IDs.
 // @author       Bogus
 // @license      MIT
