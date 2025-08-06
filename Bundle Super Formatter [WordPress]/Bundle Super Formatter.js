@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bundle Super Formatter [WordPress]
 // @namespace    https://github.com/elenich-debug/
-// @version      8.0
+// @version      1.0
 // @description  Automates post creation in WordPress Classic Editor: templates content, manages categories, tags, custom fields, and populates a shortcode with IDs.
 // @author       elenich-debug
 // @license      MIT
@@ -74,25 +74,17 @@
         });
     };
 
-    // --- НОВАЯ ФУНКЦИЯ: Установка категории "Bundle" ---
+    // --- Функция: Установка категории "Bundle" ---
     const setBundleCategory = () => {
         const categoryChecklist = document.getElementById('categorychecklist');
-        if (!categoryChecklist) {
-            console.error('Category checklist not found.');
-            return;
-        }
+        if (!categoryChecklist) return;
 
-        // Находим все чекбоксы категорий
         const allCategoryCheckboxes = categoryChecklist.querySelectorAll('input[type="checkbox"]');
-
-        // Проходим по всем и снимаем галочку
         allCategoryCheckboxes.forEach(checkbox => {
             checkbox.checked = false;
         });
 
-        // Теперь ищем именно "Bundle" и ставим галочку
         allCategoryCheckboxes.forEach(checkbox => {
-            // Текст находится в родительском элементе <label>
             const labelText = checkbox.parentElement.textContent.trim();
             if (labelText === 'Bundle') {
                 checkbox.checked = true;
@@ -100,13 +92,11 @@
         });
     };
 
-
     // --- Основная логика, выполняемая при загрузке страницы ---
     window.addEventListener('load', () => {
         const editorTools = document.getElementById('wp-content-editor-tools');
         if (!editorTools) return;
 
-        // --- 1. Главная кнопка для вставки и форматирования ---
         const pasteAndFormatButton = document.createElement('button');
         pasteAndFormatButton.type = 'button';
         pasteAndFormatButton.className = 'button button-primary';
@@ -115,19 +105,17 @@
 
         pasteAndFormatButton.addEventListener('click', async () => {
             try {
-                // Основное действие: вставка текста
                 const clipboardText = await navigator.clipboard.readText();
                 const blockquotedText = `<blockquote>${clipboardText}</blockquote>`;
                 const additionalCode = `
-                <div class="custom-divider orange"></div>
-                [display-posts post_type="post, request" id="00, 00, 00, 00, 00, 00, 00" include_content="true" posts_per_page="-1" ignore_sticky_posts="true"]`;
+<div class="custom-divider orange"></div>
+[display-posts post_type="post, request" id="00, 00, 00, 00, 00, 00, 00" include_content="true" posts_per_page="-1" ignore_sticky_posts="true"]`;
                 const finalContent = blockquotedText + additionalCode;
                 document.getElementById('content').value = finalContent;
 
-                // ---- ВЫЗОВ ВСЕХ АВТОМАТИЧЕСКИХ ДЕЙСТВИЙ ----
                 disableAllTags();
                 clearPriceCustomField();
-                setBundleCategory(); // Вызываем новую функцию для категорий
+                setBundleCategory();
 
             } catch (err) {
                 console.error('Не удалось прочитать содержимое буфера обмена: ', err);
@@ -135,9 +123,8 @@
             }
         });
 
-        // --- Остальной код для добавления кнопок (без изменений) ---
         const addFormButton = Array.from(editorTools.querySelectorAll('button, input[type="button"]'))
-        .find(btn => btn.value === 'Add Form' || btn.innerText === 'Add Form');
+            .find(btn => btn.value === 'Add Form' || btn.innerText === 'Add Form');
         let anchorElement = addFormButton || editorTools.lastElementChild;
         anchorElement.after(pasteAndFormatButton);
         anchorElement = pasteAndFormatButton;
