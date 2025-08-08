@@ -4,6 +4,7 @@
 // @version      9.0
 // @description  Full automation for post creation: pastes text, updates IDs, manages categories and tags, clears custom fields, and cleans up the final shortcode.
 // @author       Bogus
+// @icon         https://3d-stuff.community/wp-content/uploads/2023/10/favicon.png
 // @match        */wp-admin/post.php*
 // @match        */wp-admin/post-new.php*
 // @downloadURL  https://github.com/elenich-debug/bogus/blob/main/BundleSuperFormatterWordPress/Bundle-Super-Formatter.js
