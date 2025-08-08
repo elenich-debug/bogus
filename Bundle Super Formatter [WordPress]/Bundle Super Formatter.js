@@ -1,15 +1,12 @@
 // ==UserScript==
 // @name         Bundle Super Formatter [WordPress]
 // @namespace    http://tampermonkey.net/
-// @version      8.0
-// @description  Automates post creation in WordPress Classic Editor: templates content, manages categories, tags, custom fields, and populates a shortcode with IDs.
+// @version      9.0
+// @description  Full automation for post creation: pastes text, updates IDs, manages categories and tags, clears custom fields, and cleans up the final shortcode.
 // @author       Bogus
-// @license      MIT
 // @match        */wp-admin/post.php*
 // @match        */wp-admin/post-new.php*
 // @grant        none
-// @updateURL    https://raw.githubusercontent.com/elenich-debug/bogus/main/Bundle%20Super%20Formatter%20%5BWordPress%5D/Bundle%20Super%20Formatter.js
-// @downloadURL  https://raw.githubusercontent.com/elenich-debug/bogus/main/Bundle%20Super%20Formatter%20%5BWordPress%5D/Bundle%20Super%20Formatter.js
 // ==/UserScript==
 
 (function() {
@@ -74,17 +71,25 @@
         });
     };
 
-    // --- Функция: Установка категории "Bundle" ---
+    // --- НОВАЯ ФУНКЦИЯ: Установка категории "Bundle" ---
     const setBundleCategory = () => {
         const categoryChecklist = document.getElementById('categorychecklist');
-        if (!categoryChecklist) return;
+        if (!categoryChecklist) {
+            console.error('Category checklist not found.');
+            return;
+        }
 
+        // Находим все чекбоксы категорий
         const allCategoryCheckboxes = categoryChecklist.querySelectorAll('input[type="checkbox"]');
+
+        // Проходим по всем и снимаем галочку
         allCategoryCheckboxes.forEach(checkbox => {
             checkbox.checked = false;
         });
 
+        // Теперь ищем именно "Bundle" и ставим галочку
         allCategoryCheckboxes.forEach(checkbox => {
+            // Текст находится в родительском элементе <label>
             const labelText = checkbox.parentElement.textContent.trim();
             if (labelText === 'Bundle') {
                 checkbox.checked = true;
@@ -92,19 +97,22 @@
         });
     };
 
+
     // --- Основная логика, выполняемая при загрузке страницы ---
     window.addEventListener('load', () => {
         const editorTools = document.getElementById('wp-content-editor-tools');
         if (!editorTools) return;
 
+        // --- 1. Главная кнопка для вставки и форматирования ---
         const pasteAndFormatButton = document.createElement('button');
         pasteAndFormatButton.type = 'button';
         pasteAndFormatButton.className = 'button button-primary';
-        pasteAndFormatButton.innerText = 'Вставить и форматировать';
+        pasteAndFormatButton.innerText = 'Вставить';
         pasteAndFormatButton.style.marginLeft = '5px';
 
         pasteAndFormatButton.addEventListener('click', async () => {
             try {
+                // Основное действие: вставка текста
                 const clipboardText = await navigator.clipboard.readText();
                 const blockquotedText = `<blockquote>${clipboardText}</blockquote>`;
                 const additionalCode = `
@@ -113,9 +121,10 @@
                 const finalContent = blockquotedText + additionalCode;
                 document.getElementById('content').value = finalContent;
 
+                // ---- ВЫЗОВ ВСЕХ АВТОМАТИЧЕСКИХ ДЕЙСТВИЙ ----
                 disableAllTags();
                 clearPriceCustomField();
-                setBundleCategory();
+                setBundleCategory(); // Вызываем новую функцию для категорий
 
             } catch (err) {
                 console.error('Не удалось прочитать содержимое буфера обмена: ', err);
@@ -123,6 +132,7 @@
             }
         });
 
+        // --- Остальной код для добавления кнопок (без изменений) ---
         const addFormButton = Array.from(editorTools.querySelectorAll('button, input[type="button"]'))
             .find(btn => btn.value === 'Add Form' || btn.innerText === 'Add Form');
         let anchorElement = addFormButton || editorTools.lastElementChild;
@@ -145,7 +155,7 @@
         cleanupButton.type = 'button';
         cleanupButton.className = 'button button-primary';
         cleanupButton.innerText = 'Очистить ID';
-        cleanupButton.style.marginLeft = '10px';
+        cleanupButton.style.marginLeft = '3px';
         cleanupButton.addEventListener('click', () => {
             const editorTextarea = document.getElementById('content');
             const shortcodeRegex = /(\[display-posts.*?id=")(.*?)(".*\])/;
