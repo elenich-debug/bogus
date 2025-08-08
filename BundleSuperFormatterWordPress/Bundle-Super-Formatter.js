@@ -6,8 +6,8 @@
 // @author       Bogus
 // @match        */wp-admin/post.php*
 // @match        */wp-admin/post-new.php*
-// @downloadURL  
-// @updateURL    
+// @downloadURL  https://github.com/elenich-debug/bogus/blob/main/BundleSuperFormatterWordPress/Bundle-Super-Formatter.js
+// @updateURL    https://github.com/elenich-debug/bogus/blob/main/BundleSuperFormatterWordPress/Bundle-Super-Formatter.js
 // @grant        none
 // ==/UserScript==
 
