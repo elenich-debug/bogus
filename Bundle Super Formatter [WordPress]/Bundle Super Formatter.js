@@ -6,6 +6,8 @@
 // @author       Bogus
 // @match        */wp-admin/post.php*
 // @match        */wp-admin/post-new.php*
+// @downloadURL  
+// @updateURL    
 // @grant        none
 // ==/UserScript==
 
