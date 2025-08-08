@@ -7,8 +7,8 @@
 // @icon         https://3d-stuff.community/wp-content/uploads/2023/10/favicon.png
 // @match        */wp-admin/post.php*
 // @match        */wp-admin/post-new.php*
-// @downloadURL  https://github.com/elenich-debug/bogus/blob/main/BundleSuperFormatterWordPress/Bundle-Super-Formatter.js
-// @updateURL    https://github.com/elenich-debug/bogus/blob/main/BundleSuperFormatterWordPress/Bundle-Super-Formatter.js
+// @downloadURL  https://raw.githubusercontent.com/elenich-debug/bogus/refs/heads/main/BundleSuperFormatterWordPress/Bundle-Super-Formatter.js
+// @updateURL    https://raw.githubusercontent.com/elenich-debug/bogus/refs/heads/main/BundleSuperFormatterWordPress/Bundle-Super-Formatter.js
 // @grant        none
 // ==/UserScript==
 
